@@ -24,20 +24,33 @@ li{
   color: blue;
   cursor: pointer;
 }
+.navbar .nav-menu{
+  flex: 0.7;
+}
 .navbar .action-btn:is(:first-child){
  margin-right: 10px;
 }
-.navbar .nav-menu{
-  display: flex;
-  flex: 0.7;
-  align-items: center;
-  background-color: unset;
-  border-inline-end:unset !important;
-  text-align: center;
+
+@media only screen and (max-width: 600px) {
+  .action-btn:visited{
+    .nav-menu{
+      display: block;
+  }}
+  .nav-menu{
+    display: none;
+    position: absolute !important;
+    top: 60px;
+    width: 100%;
+    transition: all 2s;
+  }
+}
+.ant-menu-light.ant-menu-horizontal.ant-menu-item-selected{
+  color: red;
+  border-bottom-color: unset;
+}
+.ant-menu-light.ant-menu-horizontal:hover{
+  border-bottom-color: unset;
 }
 .navbar .nav-input{
   width: 300px;
-}
-@media screen {
-  
 }

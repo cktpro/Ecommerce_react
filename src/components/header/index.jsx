@@ -1,13 +1,55 @@
 import React, { useState } from "react";
-import { BarsOutlined, ShoppingCartOutlined,SettingOutlined } from "@ant-design/icons";
+import {
+  BarsOutlined,
+  HomeOutlined,
+  ShoppingCartOutlined,
+  AppstoreOutlined,
+} from "@ant-design/icons";
 import "./header.css";
 import { Link } from "react-router-dom";
-import { Badge, Avatar, Menu,Input,Space } from "antd";
-const {Search}=Input
-const onSearch = (value) => console.log('<<<<<< Search Value >>>>>>','\n',value);;
+import { Badge, Avatar, Menu, Input, Space,Layout } from "antd";
+const {Header}=Layout
+const { Search } = Input;
+const onSearch = (value) =>
+  console.log("<<<<<< Search Value >>>>>>", "\n", value);
+const items=[
+  {
+    key: "home",
+    label: "Home",
+    icon: <HomeOutlined  size="lager"/>,
+  },
+  {
+    key: "products",
+    label: "Products",
+    icon: <AppstoreOutlined />,
+    children: [
+      {
+        key: "smartphone",
+        label: "Smart Phone",
+      },
+      {
+        key: "tablet",
+        label: "Tablet",
+      },
+      {
+        key: "laptop",
+        label: "Laptop",
+      },
+    ],
+  },
+  {
+    key: "services",
+    label: "Services",
+  },
+  {
+    key: "contract",
+    label: "Contract",
+  },
+]
 const Headers = () => {
+  const [isInline,setInline]=useState(false)
   return (
-    <header>
+    <Header >
       <div className="navbar">
         <div className="nav-logo">
           <Link>
@@ -15,31 +57,21 @@ const Headers = () => {
           </Link>
         </div>
         <Space.Compact>
-      <Search placeholder="Iphone 13 pro max" onSearch={onSearch} allowClear />
-    </Space.Compact>
+          <Search
+            placeholder="Iphone 13 pro max"
+            onSearch={onSearch}
+            allowClear
+          />
+        </Space.Compact>
+        <div className="nav-menu">
         <Menu
-        className="nav-menu"
-        items={[
-          {
-            key:"home",
-            label:"Home",
-            icon:<BarsOutlined/>
-          },
-          {
-            key:"about",
-            label:"About"
-          },
-          {
-            key:"services",
-            label:"Services"
-          },
-          {
-            key:"contract",
-            label:"Contract"
-          }
-          
-        ]}
+        overflowedIndicator={<BarsOutlined/>}
+        mode={isInline?"inline":"horizontal"}
+          theme="dark"
+          triggerSubMenuAction="click"
+          items={items}
         />
+        </div>
         {/* <ul className="nav-link">
           <li>
             <Link>Home</Link>
@@ -58,15 +90,16 @@ const Headers = () => {
           <Link className="action-btn">Login</Link>
           <Link className="action-btn">
             <Badge count={5} showZero>
-            <ShoppingCartOutlined size="larger"/>
+              <ShoppingCartOutlined size="larger" />
             </Badge>
           </Link>
         </div>
         <div className="toggle-btn">
-          <BarsOutlined />
+          <BarsOutlined  onClick={()=>setInline((prev)=>!prev)}/>
         </div>
       </div>
-    </header>
+    </Header>
+    
   );
 };
 export default Headers;

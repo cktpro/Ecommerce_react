@@ -1,6 +1,13 @@
 # Getting Started with Create React App
 
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Required module
+Ant design
+# `npm install antd --save`
+Redux-saga
+# `npm install --save redux-saga`
 
 ## Available Scripts
 
