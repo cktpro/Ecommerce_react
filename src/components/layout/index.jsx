@@ -1,10 +1,11 @@
-import React from 'react';
-import { Breadcrumb, Layout, theme,Row} from 'antd';
+import React from "react";
+import { Breadcrumb, Layout, theme, Row } from "antd";
 
 import Footers from "components/footer";
 import Headers from "components/header";
-import { Outlet } from 'react-router-dom';
-const {  Content, } = Layout;
+import { Outlet } from "react-router-dom";
+import Carousels from "components/carousel";
+const { Content } = Layout;
 function Layouts(props) {
   const {
     token: { colorBgContainer },
@@ -12,34 +13,28 @@ function Layouts(props) {
   return (
     <Layout className="layout">
       {/* Header */}
-      <Headers/>
-      <Row>
-      
-      </Row>
+      <Headers />
+      <Carousels/>
       <Content
         style={{
           padding: "0 50px",
         }}
       >
-        <Breadcrumb
-          style={{
-            margin: "16px 0",
-          }}
-        >
-          <Breadcrumb.Item>Home</Breadcrumb.Item>
-          <Breadcrumb.Item>List</Breadcrumb.Item>
-          <Breadcrumb.Item>App</Breadcrumb.Item>
-        </Breadcrumb>
+        
+        
         <div
           className="site-layout-content"
           style={{
             background: colorBgContainer,
           }}
         >
-          <Outlet/>
+          
+          
+          <Outlet />
         </div>
+        
       </Content>
-      <Footers/>
+      <Footers />
     </Layout>
   );
 }

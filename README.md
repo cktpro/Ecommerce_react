@@ -3,11 +3,13 @@
 
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-# Required module
+## Required module
+Bootstrap
+## `npm i bootstrap@5.3.0`
 Ant design
-# `npm install antd --save`
+## `npm install antd --save`
 Redux-saga
-# `npm install --save redux-saga`
+## `npm install --save redux-saga`
 
 ## Available Scripts
 

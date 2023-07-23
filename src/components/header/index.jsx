@@ -1,105 +1,65 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
+import { Link } from "react-router-dom";
 import {
   BarsOutlined,
-  HomeOutlined,
+  CloseOutlined,
   ShoppingCartOutlined,
-  AppstoreOutlined,
 } from "@ant-design/icons";
+import { Button, Input, Badge, Dropdown, Menu } from "antd";
+
 import "./header.css";
-import { Link } from "react-router-dom";
-import { Badge, Avatar, Menu, Input, Space,Layout } from "antd";
-const {Header}=Layout
 const { Search } = Input;
-const onSearch = (value) =>
-  console.log("<<<<<< Search Value >>>>>>", "\n", value);
-const items=[
-  {
-    key: "home",
-    label: "Home",
-    icon: <HomeOutlined  size="lager"/>,
-  },
-  {
-    key: "products",
-    label: "Products",
-    icon: <AppstoreOutlined />,
-    children: [
-      {
-        key: "smartphone",
-        label: "Smart Phone",
-      },
-      {
-        key: "tablet",
-        label: "Tablet",
-      },
-      {
-        key: "laptop",
-        label: "Laptop",
-      },
-    ],
-  },
-  {
-    key: "services",
-    label: "Services",
-  },
-  {
-    key: "contract",
-    label: "Contract",
-  },
-]
-const Headers = () => {
-  const [isInline,setInline]=useState(false)
+function Headers(props) {
+  const [isShow, setIsShow] = useState(false);
+  const navRef = useRef();
+  const showNavBar = async () => {
+    await navRef.current.classList.toggle("responsive_nav");
+    await setIsShow((prev) => !prev);
+  };
+  const onSearch = (value) => console.log(value);
+
+
   return (
-    <Header >
-      <div className="navbar">
-        <div className="nav-logo">
-          <Link>
-            <h1>REACT-DEV</h1>
-          </Link>
-        </div>
-        <Space.Compact>
-          <Search
-            placeholder="Iphone 13 pro max"
-            onSearch={onSearch}
-            allowClear
-          />
-        </Space.Compact>
-        <div className="nav-menu">
-        <Menu
-        overflowedIndicator={<BarsOutlined/>}
-        mode={isInline?"inline":"horizontal"}
-          theme="dark"
-          triggerSubMenuAction="click"
-          items={items}
+    <header className="app-header">
+      <Button className="nav-btn-menu" onClick={showNavBar}>
+        {!isShow ? <BarsOutlined /> : <CloseOutlined />}
+      </Button>
+      <h2>REACT-DEV</h2>
+      <nav ref={navRef} className="nav-header">
+        <Link to="/">Home</Link>
+        {/* <Dropdown
+        trigger="click"
+        menu={{
+          items
+        }}
+        placement="bottom"
+      >
+        <Button>Products</Button>
+      </Dropdown> */}
+        <Link to="/mywork">My Work</Link>
+        <Link to="/blog"> Blog</Link>
+        <Link to="about">About Me</Link>
+        {/* <Menu triggerSubMenuAction="click"  className="nav-menu" theme="none" items={items} /> */}
+
+        <Search
+          style={{ width: "200px" }}
+          placeholder="Bạn muốn tìm gì?"
+          allowClear
+          onSearch={onSearch}
+          className="search"
         />
-        </div>
-        {/* <ul className="nav-link">
-          <li>
-            <Link>Home</Link>
-          </li>
-          <li>
-            <Link>About</Link>
-          </li>
-          <li>
-            <Link>Services</Link>
-          </li>
-          <li>
-            <Link>Contract</Link>
-          </li>
-        </ul> */}
-        <div className="customer">
-          <Link className="action-btn">Login</Link>
-          <Link className="action-btn">
-            <Badge count={5} showZero>
-              <ShoppingCartOutlined size="larger" />
-            </Badge>
-          </Link>
-        </div>
-        <div className="toggle-btn">
-          <BarsOutlined  onClick={()=>setInline((prev)=>!prev)}/>
-        </div>
-      </div>
-    </Header>
-    
+      </nav>
+
+      <Link to="cart">
+        <Badge count={1}>
+          {/* <Avatar shape="square" icon={<ShoppingCartOutlined />} /> */}
+          <Button>
+            <ShoppingCartOutlined />
+          </Button>
+        </Badge>
+      </Link>
+    </header>
   );
-};
+}
+
 export default Headers;

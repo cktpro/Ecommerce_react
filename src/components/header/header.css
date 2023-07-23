@@ -1,56 +1,63 @@
-header{
-  position: relative;
-  padding: 0 2rem;
-  background-color: antiquewhite;
-}
-li{
-  list-style: none;
-}
-.navbar{
-  width: 100%;
-  height:60px;
-  max-width: 1200px;
-  margin: 0 auto;
+.app-header{
+  background-color: bisque;
+  position: sticky;
+  top: 0;
+  z-index: 1;
   display: flex;
-  align-items: center;
   justify-content: space-between;
+  align-items: center;
+  height: 60px;
+  padding: 0 2rem;
 }
-.navbar .nav-link{
+.app-header .nav-header{
   display: flex;
-  gap: 2rem;
+  justify-content: center;
+  align-items: center;
 }
-.navbar .toggle-btn{
-  font-size: 1.5rem;
-  color: blue;
-  cursor: pointer;
+.app-header .nav-header a{
+  margin: 0 2rem;
+  color: black;
+  font-weight: 500;
+  font-size: 11pt;
 }
-.navbar .nav-menu{
-  flex: 0.7;
+.app-header .nav-menu{
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
-.navbar .action-btn:is(:first-child){
- margin-right: 10px;
+.app-header .nav-btn-menu{
+  display: none;
+  opacity: 0;
 }
-
-@media only screen and (max-width: 600px) {
-  .action-btn:visited{
-    .nav-menu{
-      display: block;
-  }}
-  .nav-menu{
-    display: none;
-    position: absolute !important;
-    top: 60px;
+.app-header .search{
+  width: 0
+}
+@media only screen and (max-width: 900px) {
+  .app-header .nav-header{
+    background-color: bisque;
+    position: fixed;
+    top:60px;
+    z-index: -1000;
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    left: 0;
     width: 100%;
-    transition: all 2s;
+    height: 0;
+    overflow: hidden;
+    transition: 0.5s;
+
   }
-}
-.ant-menu-light.ant-menu-horizontal.ant-menu-item-selected{
-  color: red;
-  border-bottom-color: unset;
-}
-.ant-menu-light.ant-menu-horizontal:hover{
-  border-bottom-color: unset;
-}
-.navbar .nav-input{
-  width: 300px;
+  .app-header .nav-header a:not(:last-child){
+    margin-bottom: 10px;
+
+  }
+  .app-header .responsive_nav{
+    height: 50%;
+  }
+  .app-header .nav-btn-menu{
+    display: block;
+    opacity: 1;
+  }
 }
