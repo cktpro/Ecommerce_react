@@ -7,7 +7,7 @@ import App from 'app/App';
 import reportWebVitals from './app/reportWebVitals';
 import store from './store';
 
-import './index.css';
+import './index.scss';
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));

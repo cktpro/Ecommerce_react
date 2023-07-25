@@ -7,7 +7,7 @@ import {
 } from "@ant-design/icons";
 import { Button, Input, Badge, Dropdown, Menu } from "antd";
 
-import "./header.css";
+import "./header.scss";
 const { Search } = Input;
 function Headers(props) {
   const [isShow, setIsShow] = useState(false);
