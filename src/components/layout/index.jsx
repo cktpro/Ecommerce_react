@@ -5,6 +5,7 @@ import Footers from "components/footer";
 import Headers from "components/header";
 import { Outlet } from "react-router-dom";
 import Carousels from "components/carousel";
+import Products from "components/products";
 const { Content } = Layout;
 function Layouts(props) {
   const {
@@ -20,18 +21,7 @@ function Layouts(props) {
           padding: "0 50px",
         }}
       >
-        
-        
-        <div
-          className="site-layout-content"
-          style={{
-            background: colorBgContainer,
-          }}
-        >
-          
-          
           <Outlet />
-        </div>
         
       </Content>
       <Footers />

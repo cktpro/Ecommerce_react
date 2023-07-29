@@ -2,6 +2,8 @@ import React from 'react';
 import { LOCATIONS } from 'constants/index';
 
 import Layouts from 'components/layout';
+import Main from 'components/main';
+import ProductsPage from 'pages/productsPage';
 export const routers = [
 //   { path: LOCATIONS.LOGIN, name: "Login Page", element: <Login /> },
   {
@@ -9,12 +11,12 @@ export const routers = [
     name: "Layout",
     element: <Layouts />,
     children: [
-    //   { isRoot: true, name: "Parent Component", element: <ParentComponent /> },
+      { isRoot: true, name: "Home", element: <Main/> },
     //   { path: LOCATIONS.PLAY_LIST, name: "Play List", element: <PlayList /> },
     //   { path: LOCATIONS.FORM, name: "Form Register", element: <FormPage /> },
     //   { path: LOCATIONS.TAB, name: "Tab", element: <TabPage /> },
     //   { path: LOCATIONS.SLIDE, name: "Slider", element: <SliderPage /> },
-    //   { path: LOCATIONS.PRODUCTS, name: "Product Page", element: <ProductsPage /> },
+      { path: LOCATIONS.PRODUCTS, name: "Product Page", element: <ProductsPage/> },
     //   { path: LOCATIONS.MY_PROFILE, name: "My Profile", element: <Profile /> },
     ]
   },

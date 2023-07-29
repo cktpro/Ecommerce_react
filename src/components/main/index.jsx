@@ -2,9 +2,9 @@ import React from 'react';
 
 function Main(props) {
     return (
-        <d>
-            
-        </d>
+        <div>
+            Hello world
+        </div>
     );
 }
 
