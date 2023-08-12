@@ -5,12 +5,8 @@ import Footers from "components/footer";
 import Headers from "components/header";
 import { Outlet } from "react-router-dom";
 import Carousels from "components/carousel";
-import Products from "components/products";
 const { Content } = Layout;
 function Layouts(props) {
-  const {
-    token: { colorBgContainer },
-  } = theme.useToken();
   return (
     <Layout className="layout">
       {/* Header */}

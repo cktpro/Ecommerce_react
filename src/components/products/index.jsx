@@ -8,6 +8,7 @@ import {
   Modal,
   message,
   Alert,
+  Row,Col
 } from "antd";
 import { DeleteOutlined, EditOutlined } from "@ant-design/icons";
 
@@ -22,6 +23,7 @@ const MESSAGE_TYPE = {
 function Products() {
   const [selectedProduct, setSelectedProduct] = useState(null);
   const [editModalVisible, setEditModalVisible] = useState(false);
+  const [isHidden, setIsHidden] = useState(true);
   const [products, setProducts] = useState([]);
   const [categories, setCategories] = useState([]);
   const [suppliers, setSuppliers] = useState([]);
@@ -151,7 +153,7 @@ function Products() {
   }, [getProductData]);
   const columns = [
     {
-      title: "id",
+      title: "ID",
       dataIndex: "id",
       key: "id",
     },
@@ -198,13 +200,19 @@ function Products() {
   ];
   return (
     <>
+      <Row>
+        <Col span={20}><h1>Products</h1></Col>
+        <Col span={4} className="text-end"><Button type="primary" className="my-3" onClick={()=>{setIsHidden((prev)=>!prev)}}>{isHidden?"Add Product":"Close"}</Button></Col>
+      </Row>
       <ProductsForm
+       className={isHidden?"d-none":"d-block"}
         suppliers={suppliers}
         categories={categories}
         formName="add-product-form"
         onFinish={onFinish}
+        
       />
-      <Table rowKey="id" columns={columns} dataSource={products} />;
+      <Table rowKey="id" columns={columns} dataSource={products} />
       <Modal
         open={editModalVisible}
         centered

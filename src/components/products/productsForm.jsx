@@ -11,12 +11,13 @@ function ProductsForm(props) {
     suppliers,
     categories,
     onFinish,
+    className
   } = props;
   return (
     <div className="w-75 mx-auto">
       <Form
         form={form}
-        className=""
+        className={className}
         name={formName}
         labelCol={{ span: 8 }}
         wrapperCol={{ span: 16 }}
@@ -156,7 +157,7 @@ function ProductsForm(props) {
         )}
       </Form>
     </div>
-  );
+  )
 }
 
 export default memo(ProductsForm)
