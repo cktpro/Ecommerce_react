@@ -4,4 +4,5 @@ export const LOCATIONS = {
     PLAY_LIST: '/play-list',
     FORM: '/form',
     PRODUCTS: '/products',
+    PRODUCT_DETAILS:'/product_details/:id',
 }

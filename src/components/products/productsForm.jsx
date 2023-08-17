@@ -70,7 +70,7 @@ function ProductsForm(props) {
         >
           <Select>
             {suppliers.map((s) => (
-              <Option key={s.id} value={s.id || s._id}>{s.name}</Option>
+              <Option key={s.id || s._id} value={s.id || s._id}>{s.name}</Option>
             ))}
           </Select>
         </Form.Item>
@@ -86,7 +86,7 @@ function ProductsForm(props) {
         >
           <Select>
             {categories.map((s) => (
-              <Option key={s.id} value={s.id || s._id}>{s.name}</Option>
+              <Option key={s.id || s._id} value={s.id || s._id}>{s.name}</Option>
             ))}
           </Select>
         </Form.Item>

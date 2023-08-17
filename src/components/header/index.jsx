@@ -4,9 +4,11 @@ import {
   BarsOutlined,
   CloseOutlined,
   ShoppingCartOutlined,
+  UserOutlined
 } from "@ant-design/icons";
-import { Button, Input, Badge, Dropdown, Menu } from "antd";
+import { Button, Input, Badge,Avatar } from "antd";
 
+import { LOCATIONS } from "constants/index";
 import "./header.scss";
 const { Search } = Input;
 function Headers(props) {
@@ -36,7 +38,7 @@ function Headers(props) {
       >
         <Button>Products</Button>
       </Dropdown> */}
-        <Link to="/mywork">My Work</Link>
+        <Link to="/products">Products</Link>
         <Link to="/blog"> Blog</Link>
         <Link to="about">About Me</Link>
         {/* <Menu triggerSubMenuAction="click"  className="nav-menu" theme="none" items={items} /> */}
@@ -50,6 +52,12 @@ function Headers(props) {
         />
       </nav>
 
+      <div >
+      
+      <Link className="me-2 text-decoration-none text-black" to={LOCATIONS.LOGIN}>
+      <Avatar className="me-1" icon={<UserOutlined />} />
+      Login
+      </Link>
       <Link to="cart">
         <Badge count={1}>
           {/* <Avatar shape="square" icon={<ShoppingCartOutlined />} /> */}
@@ -58,6 +66,7 @@ function Headers(props) {
           </Button>
         </Badge>
       </Link>
+      </div>
     </header>
   );
 }
