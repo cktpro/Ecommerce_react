@@ -6,6 +6,12 @@ import Main from 'components/main';
 import ProductsPage from 'pages/productsPage';
 import LoginPage from 'pages/loginPage';
 import Details from 'pages/productsPage/details';
+import AdminPage from 'pages/adminPage';
+import Dashboard from 'components/admin';
+import Category from 'components/admin/category';
+import Product from 'components/admin/product';
+import Supplier from 'components/admin/supplier';
+import Customer from 'components/admin/customer';
 export const routers = [
 //   { path: LOCATIONS.LOGIN, name: "Login Page", element: <Login /> },
   {
@@ -23,7 +29,21 @@ export const routers = [
     //   { path: LOCATIONS.MY_PROFILE, name: "My Profile", element: <Profile /> },
     ]
   },
-  { path: LOCATIONS.LOGIN, name: "Login Page", element: <LoginPage/> }
+  {
+    path: LOCATIONS.ADMIN,
+    name: "Layout",
+    element: <AdminPage />,
+    children: [
+      { isRoot: true, name: "Home", element: <Dashboard/> },
+      { path: LOCATIONS.AD_PRODUCTS, name: "Admin Products", element: <Product/>},
+      { path: LOCATIONS.AD_CATEGORY, name: "Admin Category", element: <Category/> },
+      { path: LOCATIONS.AD_SUPPLIER, name: "Admin Supplier", element: <Supplier/> },
+      { path: LOCATIONS.AD_CUSTOMER, name: "Admin Supplier", element: <Customer/> },
+    //   { path: LOCATIONS.SLIDE, name: "Slider", element: <SliderPage /> },
+
+    //   { path: LOCATIONS.MY_PROFILE, name: "My Profile", element: <Profile /> },
+    ]
+  },
 //   { path: LOCATIONS.COUNTER, name: "Counter", element: <CounterApp /> },
 //   { path: LOCATIONS.TODO, name: "Todo", element: <TodoApp /> },
 //   { path: LOCATIONS.PRODUCTS_PAGE, name: "Products", element: <ProductsPage2 /> },

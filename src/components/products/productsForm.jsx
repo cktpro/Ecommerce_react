@@ -23,9 +23,6 @@ function ProductsForm(props) {
         wrapperCol={{ span: 16 }}
         style={optionStyle}
         onFinish={onFinish}
-        initialValues={{
-          gender: "female",
-        }}
       >
         {/* <Form.Item
           label="Giới tính"

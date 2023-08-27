@@ -14,6 +14,7 @@ import {
   Col,
   Pagination,
   Select,
+  Slider
 } from "antd";
 import { DeleteOutlined, EditOutlined } from "@ant-design/icons";
 
@@ -35,7 +36,7 @@ function Products() {
   });
   const [total, setTotal] = useState(0);
   const [search, setSearch] = useState({
-    category:undefined
+    categoryId: undefined,
   });
   const [selectedProduct, setSelectedProduct] = useState(null);
   const [editModalVisible, setEditModalVisible] = useState(false);
@@ -153,8 +154,9 @@ function Products() {
   const getProductData = useCallback(async () => {
     try {
       const res = await axiosClient.get(
-        `/products?page=${pagination.page}&pageSize=${pagination.pageSize}&category=${search.category}`
+        `/products?page=${pagination.page}&pageSize=${pagination.pageSize}&category=${search.categoryId}`
       );
+      console.log("◀◀◀ res ▶▶▶", res.data.payload);
       setProducts(res.data.payload);
       setPagination((prev) => ({
         ...prev,
@@ -163,7 +165,7 @@ function Products() {
     } catch (error) {
       console.log(error);
     }
-  }, [pagination.page, pagination.pageSize]);
+  }, [pagination.page, pagination.pageSize, search.categoryId]);
   const getSuppliers = useCallback(async () => {
     try {
       const res = await axiosClient.get("suppliers");
@@ -200,7 +202,7 @@ function Products() {
   }, [getCategories, getSuppliers]);
   useEffect(() => {
     getProductData();
-  }, [getProductData]);
+  }, [getProductData, search]);
   const columns = [
     {
       title: "STT",
@@ -277,17 +279,19 @@ function Products() {
       },
     },
   ];
-  const handleChange = useCallback(
-    (value) => {
-      setSearch((prev) => ({
+  const handleChange = (value) => {
+    console.log("◀◀◀ choose ▶▶▶", value);
+    setSearch((prev) => {
+      return {
         ...prev,
-        
-      }));
-
-      getProductData();
-    },
-    [getProductData]
-  );
+        categoryId: value,
+      };
+    });
+  };
+  const [inputValue, setInputValue] = useState(1);
+  const onChange = (newValue) => {
+    setInputValue(newValue);
+  };
   return (
     // main
     <>
@@ -316,10 +320,35 @@ function Products() {
             }}
             onChange={handleChange}
           >
-            {categories.map((item)=>{
-            return <option key={item._id} value={item._id}>{item.name}</option>
+            {categories.map((item) => {
+              return (
+                <Select.Option key={item._id} value={item._id}>
+                  {item.name}
+                </Select.Option>
+              );
             })}
           </Select>
+        </Col>
+        <Col>
+          {/* <Slider
+          style={{
+            width: 120,
+          }}
+            range={{
+              draggableTrack: true,
+            }}
+            defaultValue={[0, 1000]}
+          /> */}
+          <Slider
+          style={{
+            width: 200,
+          }}
+          // range={true}     
+          min={1}
+          max={2000}
+          onChange={onChange}
+          value={typeof inputValue === 'number' ? inputValue : 0}
+        />
         </Col>
       </Row>
       <ProductsForm
